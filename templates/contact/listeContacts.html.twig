@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des contacts{% endblock %}
+
+{% block body %}
+    <h1 class="text-center tp-2">Liste des contacts</h1>
+    <div class="row">
+        {% for contact in contacts %}
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-3">
+            <div class="card mb-3">
+                <h4 class="card-header">{{contact.nom}} {{contact.prenom}}</h4>
+                
+                <img class="avatar mx-auto my-3" style="height: 200px;   display: block;" alt="avatar du contact" src="{{contact.avatar}}">
+                
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        {% if contact.sexe==0 %}
+                            <span class="badge text-bg-info">H</span>
+                        {% else %}
+                            <span class="badge text-bg-warning">F</span>
+                        {% endif %}
+                    </li>
+                    <li class="list-group-item">{{contact.rue}}</li>
+                    <li class="list-group-item">{{contact.cp}}</li>
+                    <li class="list-group-item">{{contact.ville}}</li>
+                    <li class="list-group-item">{{contact.mail}}</li>
+                    
+                </ul>
+
+                <div class="card-body d-grid gap-2">
+                    <a href="{{path('app_contact', {'id':contact.id})}}" class="btn btn-primary" role="button">Détails</a>
+                </div>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>    
+{% endblock %}
